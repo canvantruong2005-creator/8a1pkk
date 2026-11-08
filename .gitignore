@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Local runtime data & media uploads (prevents GitHub API 1,000 files / 25MB tree limit failure)
+data/
+uploads/
+submissions/
+*.sqlite
+.aistudio/

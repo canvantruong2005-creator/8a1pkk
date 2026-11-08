@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "Submission": {
+      "title": "Submission",
+      "description": "Bài tập về nhà nộp bởi học sinh hoặc ban cán sự",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Mã bài nộp duy nhất" },
+        "classId": { "type": "string", "description": "Mã lớp học ví dụ 7a1" },
+        "studentId": { "type": "number", "description": "Số thứ tự học sinh" },
+        "studentName": { "type": "string", "description": "Tên học sinh" },
+        "subject": { "type": "string", "description": "Tên môn học" },
+        "date": { "type": "string", "description": "Ngày bài tập dạng YYYY-MM-DD" },
+        "status": { "type": "string", "description": "Trạng thái bài nộp (pending hoặc checked)" },
+        "rating": { "type": "number", "description": "Số sao đánh giá 1-5" },
+        "comment": { "type": "string", "description": "Lời phê / nhận xét của giáo viên hoặc ban cán sự" },
+        "timestamp": { "type": "string", "description": "Thời gian nộp bài" }
+      },
+      "required": ["id", "classId", "studentId", "studentName", "subject", "date", "status"]
+    },
+    "ConductLog": {
+      "title": "ConductLog",
+      "description": "Nhật ký ghi nhận nề nếp thi đua điểm cộng/trừ học sinh",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Mã lượt chấm nề nếp" },
+        "classId": { "type": "string", "description": "Mã lớp học" },
+        "studentName": { "type": "string", "description": "Tên học sinh vi phạm hoặc tuyên dương" },
+        "points": { "type": "number", "description": "Số điểm cộng hoặc trừ" },
+        "date": { "type": "string", "description": "Ngày ghi nhận" },
+        "weekId": { "type": "string", "description": "Mã tuần học" },
+        "reporterName": { "type": "string", "description": "Người ghi nhận (Sao đỏ, Tổ trưởng, GV)" },
+        "timestamp": { "type": "string", "description": "Thời gian ghi nhận" }
+      },
+      "required": ["id", "classId", "points", "date", "weekId"]
+    },
+    "LessonScoreLog": {
+      "title": "LessonScoreLog",
+      "description": "Nhật ký điểm sổ đầu bài tiết học",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Mã tiết sổ đầu bài" },
+        "classId": { "type": "string", "description": "Mã lớp học" },
+        "date": { "type": "string", "description": "Ngày học" },
+        "period": { "type": "number", "description": "Tiết học (1-5)" },
+        "subject": { "type": "string", "description": "Môn học" },
+        "teacher": { "type": "string", "description": "Giáo viên giảng dạy" },
+        "score": { "type": "number", "description": "Điểm tiết học (0-10)" },
+        "weekId": { "type": "string", "description": "Mã tuần học" }
+      },
+      "required": ["id", "classId", "date", "period", "subject", "score", "weekId"]
+    },
+    "ClassData": {
+      "title": "ClassData",
+      "description": "Dữ liệu lớp học và danh sách học sinh",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Mã lớp học" },
+        "name": { "type": "string", "description": "Tên lớp học" },
+        "grade": { "type": "number", "description": "Khối lớp (6, 7, 8, 9)" },
+        "homeroomTeacher": { "type": "string", "description": "Giáo viên chủ nhiệm" }
+      },
+      "required": ["id", "name", "grade"]
+    },
+    "SchoolConfig": {
+      "title": "SchoolConfig",
+      "description": "Cấu hình trường học năm học",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string", "description": "Tên trường" },
+        "academicYear": { "type": "string", "description": "Năm học" }
+      },
+      "required": ["schoolName", "academicYear"]
+    },
+    "ConnectionTest": {
+      "title": "ConnectionTest",
+      "description": "Kiểm tra kết nối Firestore",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "description": "Trạng thái kết nối" }
+      },
+      "required": ["status"]
+    }
+  },
+  "firestore": {
+    "/submissions/{submissionId}": {
+      "schema": "Submission",
+      "description": "Bài tập về nhà của học sinh toàn trường"
+    },
+    "/conduct_logs/{logId}": {
+      "schema": "ConductLog",
+      "description": "Ghi nhận nề nếp thi đua"
+    },
+    "/lesson_scores/{scoreId}": {
+      "schema": "LessonScoreLog",
+      "description": "Sổ đầu bài tiết học"
+    },
+    "/classes/{classId}": {
+      "schema": "ClassData",
+      "description": "Thông tin lớp học"
+    },
+    "/config/{configId}": {
+      "schema": "SchoolConfig",
+      "description": "Cấu hình trường học"
+    },
+    "/test/{testId}": {
+      "schema": "ConnectionTest",
+      "description": "Tài liệu kiểm tra kết nối"
+    }
+  }
+}

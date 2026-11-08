@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Health check document
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+
+    // Submissions (Bài tập về nhà học sinh)
+    match /submissions/{submissionId} {
+      allow read, write: if true;
+    }
+
+    // Conduct Logs (Nhật ký nề nếp thi đua)
+    match /conduct_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Lesson Scores (Sổ đầu bài)
+    match /lesson_scores/{scoreId} {
+      allow read, write: if true;
+    }
+
+    // Classes (Lớp học & Học sinh)
+    match /classes/{classId} {
+      allow read, write: if true;
+    }
+
+    // School Config (Cấu hình trường học)
+    match /config/{configId} {
+      allow read, write: if true;
+    }
+
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

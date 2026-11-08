@@ -1,0 +1,6 @@
+{
+  "name": "Hệ thống Quản lý Học tập & Thi đua Toàn diện (EduMaster 360)",
+  "description": "Nền tảng hợp nhất quản lý nền nếp thi đua, học tập nộp bài, sổ sao đỏ, sổ đầu bài, xếp hạng thời gian thực và trợ lý AI cho trường THCS Phùng Khắc Khoan và các trường học.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
